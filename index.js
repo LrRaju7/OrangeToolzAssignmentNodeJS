@@ -6,11 +6,14 @@ const fs = require('fs');
 
 const {customerProcessingFunction} = require('./customerProcessing');
 
+
 const app = express();
 dotenv.config()
 app.use(express.json())
 app.use(cors());
 const dbName = 'customer_db';
+
+const PORT = process.env.PORT || 4000
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -35,6 +38,6 @@ customerProcessingFunction(data,start);
 
 });
 
-app.listen(4000, ()=>{
-    console.log("The server is running on PORT: 4000");
+app.listen(PORT, ()=>{
+    console.log(`The server is running on PORT: ${PORT}`);
 })
