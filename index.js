@@ -24,21 +24,22 @@ mongoose.connect(process.env.MONGO_URL, {
 const start = performance.now();
 
 
-// Read the file containing the customer data
-fs.readFile('1M-customers.txt', 'utf8', async (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
 
-
-    
-
-customerProcessingFunction(data,start);
-
-});
 
 app.get('/',(req,res,next)=>{
+    // Read the file containing the customer data
+    fs.readFile('1M-customers.txt', 'utf8', async (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        
+        
+        
+        
+        customerProcessingFunction(data,start);
+        
+    });
     res.send("The server is up and running");
 })
 

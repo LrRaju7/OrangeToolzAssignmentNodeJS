@@ -71,8 +71,8 @@ const processCustomerBatch = async (customerBatch) => {
             currentInvalidCustomers.push(customer);
       }
     }
-    // await insertValidCustomer(currentValidCustomers)
-    // await insertInvalidCustomer(currentInvalidCustomers)
+    await insertValidCustomer(currentValidCustomers)
+    await insertInvalidCustomer(currentInvalidCustomers)
 }
 
 exports.customerProcessingFunction = async (data,start) => {
@@ -96,17 +96,9 @@ exports.customerProcessingFunction = async (data,start) => {
     }, []);
     for (let i = 0; i < customerBatches.length; i++) {
         await processCustomerBatch(customerBatches[i]);
-        console.log(i);
     }
-    console.log(customerBatches.length);
-    console.log(validCustomers.length);
-    console.log(invalidCustomers.length);
-    const total_customer = validCustomers.length + invalidCustomers.length;
-    console.log(`Total Customers: ${total_customer}`);
-    // console.log(`Inserting The Data into MOngoDB Database............`);
     
-    // insertValidCustomer(validCustomers)
-    // insertInvalidCustomer(invalidCustomers)
+    console.log(`Total Customers: ${total_customer}`);
     
     console.log(`Exporting Customer Data............`);
     exportValidCustomers(validCustomers);
