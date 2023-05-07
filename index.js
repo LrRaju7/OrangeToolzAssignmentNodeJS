@@ -38,6 +38,10 @@ customerProcessingFunction(data,start);
 
 });
 
+app.get('/',(req,res,next)=>{
+    res.send("The server is up and running");
+})
+
 app.listen(PORT, ()=>{
     console.log(`The server is running on PORT: ${PORT}`);
 })
