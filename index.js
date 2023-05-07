@@ -28,12 +28,7 @@ fs.readFile('1M-customers.txt', 'utf8', async (err, data) => {
         console.error(err);
         return;
     }
-    
-    
-    
-    
     customerProcessingFunction(data,start);
-    
 });
 
 app.get('/',(req,res,next)=>{
